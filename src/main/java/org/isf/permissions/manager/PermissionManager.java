@@ -41,4 +41,12 @@ public class PermissionManager {
 		return this.operations.deletePermission(id);
 	}
 
+	public List<Permission> retrieveAllPermissions() {
+		return this.operations.retrieveAllPermissions();
+	}
+
+	public boolean exists(int id) {
+		return this.operations.exists(id);
+	}
+
 }

@@ -104,4 +104,12 @@ public class PermissionIoOperations {
 		return Boolean.TRUE;
 	}
 
+	public List<Permission> retrieveAllPermissions() {
+		return this.repository.findAll();
+	}
+
+	public boolean exists(int id) {
+		return this.repository.exists(id);
+	}
+
 }
