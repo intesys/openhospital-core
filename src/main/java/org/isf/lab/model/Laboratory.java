@@ -144,7 +144,7 @@ public class Laboratory extends Auditable<String>
 	public Exam getExam(){
 		return exam;
 	}
-	public GregorianCalendar getDate(){
+	public GregorianCalendar getRegistrationDate(){
 		return registrationDate;
 	}
 	public String getResult(){
@@ -171,7 +171,7 @@ public class Laboratory extends Auditable<String>
 	public void setExamDate(GregorianCalendar exDate) {
 		this.examDate = exDate;
 	}	
-	public void setDate(GregorianCalendar aDate){
+	public void setRegistrationDate(GregorianCalendar aDate){
 		registrationDate=aDate;
 	}
 	public void setResult(String aResult){
