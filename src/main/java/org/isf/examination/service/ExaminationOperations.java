@@ -106,7 +106,8 @@ public class ExaminationOperations {
 		return repository.findByPatient_CodeOrderByPexDateDesc(patID);
 	}
 
-	public void remove(List<PatientExamination> patexList) throws OHServiceException {
+	public boolean remove(List<PatientExamination> patexList) throws OHServiceException {
 		repository.delete(patexList);
+		return true;
 	}
 }

@@ -178,9 +178,10 @@ public class ExaminationBrowserManager {
 	/**
 	 * @param patexList - the {@link PatientExamination} to delete.
 	 * @throws OHServiceException
+	 * @return
 	 */
-	public void remove(List<PatientExamination> patexList) throws OHServiceException {
-		ioOperations.remove(patexList);
+	public boolean remove(List<PatientExamination> patexList) throws OHServiceException {
+		return ioOperations.remove(patexList);
 	}
 
 	public String getBMIdescription(double bmi) {
