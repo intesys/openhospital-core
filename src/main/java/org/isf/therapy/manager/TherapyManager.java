@@ -356,4 +356,24 @@ public class TherapyManager {
 		return new TherapyRow(therapyID, patient, startDate, endDate, medical, qty, unitID, freqInDay, freqInPeriod, note, notify, sms);
 	}
 
+	/**
+	 * Get the {@link TherapyRow} with specified therapyRowID
+	 * @param therapyRowID
+	 * @return the {@link TherapyRow} or <code>null</code> if an error occurred.
+	 * @throws OHServiceException
+	 */
+	public TherapyRow getTherapyRow(int therapyRowID) throws OHServiceException {
+		return ioOperations.getTherapyRow(therapyRowID);
+	}
+
+	/**
+	 * Deletes the specified {@link TherapyRow}.
+	 * @param therapyRow the therapyRow to delete.
+	 * @return <code>true</code> if the therapyRow has been deleted, <code>false</code> otherwise.
+	 * @throws OHServiceException
+	 */
+	public boolean deleteTherapyRow(TherapyRow therapyRow) throws OHServiceException {
+		return ioOperations.deleteTherapyRow(therapyRow);
+	}
+
 }

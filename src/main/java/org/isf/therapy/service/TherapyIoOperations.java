@@ -86,4 +86,27 @@ public class TherapyIoOperations {
 	public boolean isCodePresent(Integer code) throws OHServiceException {
 		return repository.exists(code);
 	}
+
+	/**
+	 * Get the {@link TherapyRow} with specified therapyID.
+	 * @param therapyID
+	 * @return the {@link TherapyRow}.
+	 * @throws OHServiceException if an error occurs retrieving the therapy.
+	 */
+	public TherapyRow getTherapyRow(int therapyID) throws OHServiceException {
+		return repository.findOne(therapyID);
+	}
+
+	/**
+	 * Delete the {@link TherapyRow}
+	 *
+	 * @param therapyRow - the {@link TherapyRow}
+	 * @return <code>true</code> if the therapies have been deleted, <code>false</code> otherwise
+	 * @throws OHServiceException
+	 */
+	public boolean deleteTherapyRow(TherapyRow therapyRow) throws OHServiceException {
+		repository.delete(therapyRow);
+		return true;
+	}
+
 }
