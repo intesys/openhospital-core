@@ -141,7 +141,7 @@ public class Tests extends OHCoreTestCase {
 		patientIoOperationRepository.saveAndFlush(patient);
 		wardIoOperationRepository.saveAndFlush(ward);
 		Visit visit = testVisit.setup(patient, true, ward);
-		int id = visitsIoOperation.newVisit(visit).getVisitID();
+		int id = visitsIoOperation.saveVisit(visit).getVisitID();
 		_checkVisitIntoDb(id);
 	}
 
@@ -209,7 +209,7 @@ public class Tests extends OHCoreTestCase {
 		patientIoOperationRepository.saveAndFlush(patient);
 		wardIoOperationRepository.saveAndFlush(ward);
 		Visit visit = testVisit.setup(patient, true, ward);
-		int id = visitManager.newVisit(visit).getVisitID();
+		int id = visitManager.saveVisit(visit).getVisitID();
 		_checkVisitIntoDb(id);
 	}
 

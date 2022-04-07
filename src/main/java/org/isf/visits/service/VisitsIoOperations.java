@@ -66,13 +66,13 @@ public class VisitsIoOperations {
 
 
 	/**
-	 * Insert a new {@link Visit} for a specified {@link Visit}
+	 * Insert/update a {@link Visit} for a specified {@link Visit}
 	 * 
 	 * @param visit - the {@link Visit}.
 	 * @return the {@link Visit}
 	 * @throws OHServiceException 
 	 */
-	public Visit newVisit(Visit visit) throws OHServiceException {
+	public Visit saveVisit(Visit visit) throws OHServiceException {
 		return repository.save(visit);
 	}
 	

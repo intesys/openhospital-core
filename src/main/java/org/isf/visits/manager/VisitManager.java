@@ -113,15 +113,15 @@ public class VisitManager {
 	}
 
 	/**
-	 * Insert a new {@link Visit} for related Patient
+	 * Insert/update a {@link Visit} for related Patient
 	 *
 	 * @param visit - the {@link Visit}
 	 * @return the visitID
 	 * @throws OHServiceException
 	 */
-	public Visit newVisit(Visit visit) throws OHServiceException {
+	public Visit saveVisit(Visit visit) throws OHServiceException {
 		validateVisit(visit);
-		return ioOperations.newVisit(visit);
+		return ioOperations.saveVisit(visit);
 	}
 	
 	/**
@@ -156,7 +156,7 @@ public class VisitManager {
 				validateVisit(visit);
 
 				visit.setVisitID(0); //reset ID in order to persist again (otherwise JPA think data is already persisted)
-				int visitID = ioOperations.newVisit(visit).getVisitID();
+				int visitID = ioOperations.saveVisit(visit).getVisitID();
 				if (visitID == 0)
 					return false;
 
