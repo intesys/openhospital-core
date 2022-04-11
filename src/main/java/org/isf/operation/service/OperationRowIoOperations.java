@@ -87,4 +87,8 @@ public class OperationRowIoOperations {
     public void newOperationRow(OperationRow opRow) throws OHServiceException {
         repository.save(opRow);
     }
+
+	public List<OperationRow> getOperationRowByPatient(Integer patientCode) throws OHServiceException {
+			return repository.findByPatientCode(patientCode);
+	}
 }

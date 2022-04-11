@@ -48,6 +48,10 @@ public class OperationRowBrowserManager {
 		return ioOperations.getOperationRowByOpd(opd);
 	}
 
+	public List<OperationRow> getOperationRowByPatient(Integer patientCode) throws OHServiceException {
+		return ioOperations.getOperationRowByPatient(patientCode);
+	}
+
 	public boolean deleteOperationRow(OperationRow operationRow) throws OHServiceException {
 		return ioOperations.deleteOperationRow(operationRow);
 	}
