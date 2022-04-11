@@ -55,6 +55,9 @@ public class OperationRowBrowserManager {
 	public boolean deleteOperationRow(OperationRow operationRow) throws OHServiceException {
 		return ioOperations.deleteOperationRow(operationRow);
 	}
+	public boolean deleteOperationRows(List<OperationRow> operationRows) throws OHServiceException {
+		return ioOperations.deleteOperationRows(operationRows);
+	}
 
 	public boolean updateOperationRow(OperationRow opRow) throws OHServiceException {
 		ioOperations.updateOperationRow(opRow);
