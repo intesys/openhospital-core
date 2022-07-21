@@ -27,10 +27,10 @@ import java.util.List;
 import org.isf.admission.model.Admission;
 import org.isf.opd.model.Opd;
 import org.isf.operation.model.OperationRow;
+import org.isf.patient.model.Patient;
 import org.isf.utils.db.TranslateOHServiceException;
 import org.isf.utils.exception.OHServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -88,5 +88,8 @@ public class OperationRowIoOperations {
     public void newOperationRow(OperationRow opRow) throws OHServiceException {
         repository.save(opRow);
     }
-
+    public List<OperationRow> getOperationRowByPatient(Patient patient) throws OHServiceException {
+		
+			return repository.findByAdmissionPatientOrOpdPatient(patient, patient);
+	}
 }

@@ -26,8 +26,8 @@ import java.util.List;
 import org.isf.admission.model.Admission;
 import org.isf.opd.model.Opd;
 import org.isf.operation.model.OperationRow;
+import org.isf.patient.model.Patient;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -43,4 +43,6 @@ public interface OperationRowIoOperationRepository extends JpaRepository<Operati
 	OperationRow findById(int id);
 
 	List<OperationRow> findByOpd(Opd opd);
+	 
+	List<OperationRow> findByAdmissionPatientOrOpdPatient(Patient patient,Patient patient1);
 }

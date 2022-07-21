@@ -94,15 +94,14 @@ public class Opd extends Auditable<String> {
 	@Column(name="OPD_SEX")
 	private char sex;
 
-	/*@NotNull
+	@NotNull
 	@Column(name="OPD_NOTE")
-	private String note;
-	private String note; //ADDED: Alex*/
+	private String note; //ADDED: Alex
 
 	@NotNull
 	@Column(name="OPD_PROG_YEAR")	
 	private int prog_year;
-		
+
 	@ManyToOne
 	@JoinColumn(name="OPD_DIS_ID_A")
 	private Disease disease;
@@ -133,7 +132,7 @@ public class Opd extends Auditable<String> {
 	@Column(name="OPD_LOCK")
 	private int lock;
 	
-	@Column(name="OPD_REASON")
+/*	@Column(name="OPD_REASON")
    	private String reason; // ADDED: Arnaud
 
 	@Column(name="OPD_ANAMNESIS")
@@ -146,7 +145,7 @@ public class Opd extends Auditable<String> {
     	private String therapies; // ADDED: Arnaud
     
 	@Column(name="OPD_PRESCRIPTION")
-    	private String prescription; // ADDED: Arnaud
+    	private String prescription; // ADDED: Arnaud*/
 	
 	@Transient
 	private volatile int hashCode = 0;
@@ -187,7 +186,13 @@ public class Opd extends Auditable<String> {
 	public void setPatient(Patient patient) {
 		this.patient = patient;
 	}
+	public String getNote() {
+		return note;
+	}
 
+	public void setNote(String note) {
+		this.note = note;
+	}
 	public int getAge() {
 		return age;
 	}
@@ -302,7 +307,7 @@ public class Opd extends Auditable<String> {
 		this.userID = userID;
 	}
         
-	public String getReason() {
+	/*public String getReason() {
 		return reason;
 	}
 	
@@ -340,7 +345,7 @@ public class Opd extends Auditable<String> {
 
 	public void setPrescription(String prescription) {
 		this.prescription = prescription;
-	}
+	}*/
 
 		public LocalDateTime getNextVisitDate() {
 		return nextVisitDate;

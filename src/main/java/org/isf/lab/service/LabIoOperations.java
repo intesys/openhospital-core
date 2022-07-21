@@ -118,7 +118,7 @@ public class LabIoOperations {
 	public List<LaboratoryForPrint> getLaboratoryForPrint() throws OHServiceException {
 		LocalDateTime time2 = LocalDateTime.now();
 		LocalDateTime time1 = time2.minusWeeks(1);
-		return getLaboratoryForPrint(null, time1, time2);
+		return getLaboratoryForPrint(null, time1, time2,null);
 	}
 	
 	/**
@@ -130,18 +130,29 @@ public class LabIoOperations {
 	 * @return the list of {@link LaboratoryForPrint}s 
 	 * @throws OHServiceException
 	 */
-	public List<LaboratoryForPrint> getLaboratoryForPrint(String exam, LocalDateTime dateFrom, LocalDateTime dateTo) throws OHServiceException {
+	public List<LaboratoryForPrint> getLaboratoryForPrint(String exam, LocalDateTime dateFrom, LocalDateTime dateTo, Patient patient) throws OHServiceException {
 		List<LaboratoryForPrint> pLaboratory = new ArrayList<>();
-		Iterable<Laboratory> laboritories = exam != null
-				? repository.findByLabDateBetweenAndExam_DescriptionContainingOrderByExam_Examtype_DescriptionDesc(dateFrom, dateTo, exam)
-				: repository.findByLabDateBetweenOrderByExam_Examtype_DescriptionDesc(dateFrom, dateTo);
+		Iterable<Laboratory> laboritories = null;
+			if(!exam.equals("") && patient != null) {
+				laboritories = repository.findByLabDateBetweenAndExamDescriptionAndPatientCode(dateFrom, dateTo, exam, patient.getCode());
+			}
+			if(!exam.equals("") && patient == null ) {
+				laboritories = repository.findByLabDateBetweenAndExam_DescriptionContainingOrderByExam_Examtype_DescriptionDesc(dateFrom, dateTo, exam);
+			}
+			if(patient != null && exam.equals("")) {
+				laboritories = repository.findByLabDateBetweenAndPatientCode(dateFrom, dateTo, patient.getCode());
+			}
+			if(laboritories == null)
+				laboritories= repository.findByLabDateBetweenOrderByExam_Examtype_DescriptionDesc(dateFrom, dateTo);
 
 		for (Laboratory laboratory : laboritories) {
 			pLaboratory.add(new LaboratoryForPrint(
 							laboratory.getCode(),
 							laboratory.getExam(),
 							laboratory.getDate(),
-							laboratory.getResult()
+							laboratory.getResult(),
+							laboratory.getPatName(),
+							laboratory.getPatient().getCode()
 					)
 			);
 		}
