@@ -37,7 +37,7 @@ import org.isf.utils.time.TimeTools;
 public class TestLaboratory {
 
 	private String material = "TestMaterial";
-	private LocalDateTime labDate = TimeTools.getNow();
+	private LocalDateTime labDate = LocalDateTime.now();
 
 	private String result = "TestResult";
 	private String note = "TestNote";
