@@ -7,3 +7,4 @@ source step_03_dump_vaccine_data_en.sql;
 source delete_all_data.sql;
 # load demo data
 source load_demo_data.sql;
+source step_75_update_pwd_admin.sql;
