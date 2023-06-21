@@ -139,11 +139,13 @@ public class Tests extends OHCoreTestCase {
 	
 	@Test
 	public void testIoGetLastNByPatIDPaginated() throws Exception {
+		int page = 0;
+		int size = 10;
 		Patient patient = testPatient.setup(false);
 		PatientExamination lastPatientExamination = testPatientExamination.setup(patient, false);
 		patientIoOperationRepository.saveAndFlush(patient);
 		examinationIoOperationRepository.saveAndFlush(lastPatientExamination);
-		PagedResponse<PatientExamination> foundExamination = examinationOperations.getLastNByPatIDPageable(patient.getCode(), 1);
+		PagedResponse<PatientExamination> foundExamination = examinationOperations.getLastNByPatIDPageable(patient.getCode(), page, size);
 		checkPatientExaminationIntoDb(foundExamination.getData().get(0).getPex_ID());
 	}
 
