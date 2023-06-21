@@ -167,8 +167,8 @@ public class ExaminationBrowserManager {
 		return ioOperations.getLastNByPatID(patID, number);
 	}
 	
-	public PagedResponse<PatientExamination> getLastNByPatIDPageable(int patID, int number) throws OHServiceException {
-		return ioOperations.getLastNByPatIDPageable(patID, number);
+	public PagedResponse<PatientExamination> getLastNByPatIDPageable(int patID, int page, int size) throws OHServiceException {
+		return ioOperations.getLastNByPatIDPageable(patID, page, size);
 	}
 
 	public List<PatientExamination> getByPatID(int patID) throws OHServiceException {
