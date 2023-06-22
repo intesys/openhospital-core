@@ -27,6 +27,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.isf.disease.model.Disease;
+import org.isf.distype.model.DiseaseType;
 import org.isf.generaldata.GeneralData;
 import org.isf.generaldata.MessageBundle;
 import org.isf.menu.manager.UserBrowsingManager;
@@ -35,6 +36,7 @@ import org.isf.opd.service.OpdIoOperations;
 import org.isf.utils.exception.OHDataValidationException;
 import org.isf.utils.exception.OHServiceException;
 import org.isf.utils.exception.model.OHExceptionMessage;
+import org.isf.utils.pagination.PagedResponse;
 import org.isf.ward.model.Ward;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -150,6 +152,10 @@ public class OpdBrowserManager {
 		return ioOperations.getOpdList(ward, diseaseTypeCode, diseaseCode, dateFrom, dateTo, ageFrom, ageTo, sex, newPatient, user);
 	}
 	
+	public PagedResponse<Opd> getOpdPageable(Ward ward, DiseaseType diseaseType, String diseaseCode, LocalDate dateFrom, LocalDate dateTo, int ageFrom, int ageTo, char sex, char newPatient, String user, int page, int size)
+			throws OHServiceException {
+		return ioOperations.getOpdListPageable(ward, diseaseType, diseaseCode, dateFrom, dateTo, ageFrom, ageTo, sex, newPatient, user, page, size);
+	}
 
 	/**
 	 * Returns all {@link Opd}s associated to specified patient ID
@@ -161,6 +167,10 @@ public class OpdBrowserManager {
 	 */
 	public List<Opd> getOpdList(int patientcode) throws OHServiceException {
 		return ioOperations.getOpdList(patientcode);
+	}
+	
+	public PagedResponse<Opd> getOpdListPageable(int patientcode, int page, int size) throws OHServiceException {
+		return ioOperations.getOpdListPageables(patientcode, page, size);
 	}
 
 	/**

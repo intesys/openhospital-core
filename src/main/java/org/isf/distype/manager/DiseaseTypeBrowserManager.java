@@ -51,6 +51,17 @@ public class DiseaseTypeBrowserManager {
 	public List<DiseaseType> getDiseaseType() throws OHServiceException {
 		return ioOperations.getDiseaseTypes();
 	}
+	
+	/**
+	 * Returns {@link DiseaseType}s.
+	 *
+	 *@Param code
+	 * @return a disease type, <code>null</code> if the operation is failed.
+	 * @throws OHServiceException
+	 */
+	public DiseaseType getDiseaseType(String code) throws OHServiceException {
+		return ioOperations.getDiseaseTypes(code);
+	}
 
 	/**
 	 * Store the specified {@link DiseaseType}.
