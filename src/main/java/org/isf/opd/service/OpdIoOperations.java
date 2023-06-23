@@ -118,8 +118,8 @@ public class OpdIoOperations {
 			Ward ward, 
 			DiseaseType diseaseType,
 			String diseaseCode,
-			LocalDate dateFrom,
-			LocalDate dateTo,
+			LocalDateTime dateFrom,
+			LocalDateTime dateTo,
 			int ageFrom,
 			int ageTo,
 			char sex,
@@ -144,6 +144,16 @@ public class OpdIoOperations {
 				repository.findAllByPatient_CodeOrderByProgYearDesc(patID);
 	}
 	
+	/**
+	 * Return {@link List} of {@link Opd}s associated to specified patient ID
+	 * 
+	 * @param patID - the patient ID
+	 * @param page - page number
+	 * @param size - size of the list
+	 * @return the list of {@link Opd}s associated to specified patient ID.
+	 * 		   the whole list of {@link Opd}s if <code>0</code> is passed.
+	 * @throws OHServiceException 
+	 */
 	public PagedResponse<Opd> getOpdListPageables(int patID, int page, int size) throws OHServiceException {
 		return patID == 0 ?
 				setPaginationData(repository.findAllOrderByProgYearDescPageable(PageRequest.of(page, size))) :

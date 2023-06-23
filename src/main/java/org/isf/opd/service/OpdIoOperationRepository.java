@@ -69,7 +69,7 @@ public interface OpdIoOperationRepository extends JpaRepository<Opd, Integer>, O
 	@Query(value = "select op from Opd op where op.ward = :ward or op.disease.diseaseType = :diseaseType or op.disease.code = :diseaseCode or (op.date >= :dateFrom and op.date < :dateTo) "
 			+ " or (op.age >= :ageFrom and op.age < :ageTo) or op.sex = :sex or op.newPatient = :newPatient")
 	Page<Opd> findOpdListPageable(@Param("ward") Ward ward, @Param("diseaseType") DiseaseType diseaseType, @Param("diseaseCode") String diseaseCode, 
-			@Param("dateFrom") LocalDate dateFrom, @Param("dateTo") LocalDate dateTo, @Param("ageFrom") int ageFrom, @Param("ageTo") int ageTo, @Param("sex") char sex,
+			@Param("dateFrom") LocalDateTime dateFrom, @Param("dateTo") LocalDateTime dateTo, @Param("ageFrom") int ageFrom, @Param("ageTo") int ageTo, @Param("sex") char sex,
 			@Param("newPatient") char newPatient, @Param("dateFrom") String user, Pageable pageable) ;
 
 }

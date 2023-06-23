@@ -22,6 +22,7 @@
 package org.isf.opd.manager;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -154,7 +155,9 @@ public class OpdBrowserManager {
 	
 	public PagedResponse<Opd> getOpdPageable(Ward ward, DiseaseType diseaseType, String diseaseCode, LocalDate dateFrom, LocalDate dateTo, int ageFrom, int ageTo, char sex, char newPatient, String user, int page, int size)
 			throws OHServiceException {
-		return ioOperations.getOpdListPageable(ward, diseaseType, diseaseCode, dateFrom, dateTo, ageFrom, ageTo, sex, newPatient, user, page, size);
+		LocalDateTime dateFr = dateFrom.atStartOfDay();
+		LocalDateTime dateT = dateTo.atStartOfDay();
+		return ioOperations.getOpdListPageable(ward, diseaseType, diseaseCode, dateFr, dateT, ageFrom, ageTo, sex, newPatient, user, page, size);
 	}
 
 	/**
@@ -168,7 +171,16 @@ public class OpdBrowserManager {
 	public List<Opd> getOpdList(int patientcode) throws OHServiceException {
 		return ioOperations.getOpdList(patientcode);
 	}
-	
+	/**
+	 * Returns {@link List} of {@link Opd}s associated to specified patient ID with page info.
+	 *
+	 * @param patientcode - the patient ID
+	 * @param page - the number of page
+	 * @param size - the size of the list 
+	 * @return the list of {@link Opd}s associated to specified patient ID.
+	 * the whole list of {@link Opd}s if <code>0</code> is passed.
+	 * @throws OHServiceException
+	 */
 	public PagedResponse<Opd> getOpdListPageable(int patientcode, int page, int size) throws OHServiceException {
 		return ioOperations.getOpdListPageables(patientcode, page, size);
 	}

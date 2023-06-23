@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.isf.exa.model.Exam;
 import org.isf.lab.model.Laboratory;
 import org.isf.lab.model.LaboratoryForPrint;
 import org.isf.lab.model.LaboratoryRow;
@@ -165,6 +166,24 @@ public class LabIoOperations {
 			laboritories = repository.findByLabDateBetweenOrderByLabDateDesc(dateFrom, dateTo);
 		}
 		return laboritories;
+	}
+	
+	public PagedResponse<Laboratory> getLaboratoryPageable(Exam exam, LocalDateTime dateFrom, LocalDateTime dateTo, Patient patient, int page, int size) throws OHServiceException {
+		Page<Laboratory> laboritories = null;
+ 
+		if (exam != null && patient != null) {
+			laboritories = repository.findByLabDateBetweenAndExamDescriptionAndPatientCodePage(dateFrom, dateTo, exam, patient, PageRequest.of(page, size));
+		}
+		if (exam != null && patient == null) {
+			laboritories = repository.findByLabDateBetweenAndExam_DescriptionOrderByLabDateDescPage(dateFrom, dateTo, exam,  PageRequest.of(page, size));
+		}
+		if (patient != null && exam == null) {
+			laboritories = repository.findByLabDateBetweenAndPatientCodePage(dateFrom, dateTo, patient,  PageRequest.of(page, size));
+		}
+		if (patient == null && exam == null) {
+			laboritories = repository.findByLabDateBetweenOrderByLabDateDescPage(dateFrom, dateTo,  PageRequest.of(page, size));
+		}
+		return setPaginationData(laboritories);
 	}
 
 	/**

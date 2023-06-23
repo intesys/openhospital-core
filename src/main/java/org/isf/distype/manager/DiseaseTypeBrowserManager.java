@@ -53,10 +53,10 @@ public class DiseaseTypeBrowserManager {
 	}
 	
 	/**
-	 * Returns {@link DiseaseType}s.
+	 * Returns {@link DiseaseType}.
 	 *
-	 *@Param code
-	 * @return a disease type, <code>null</code> if the operation is failed.
+	 * @Param code
+	 * @return  object {@link DiseaseType}, <code>null</code> otherwise.
 	 * @throws OHServiceException
 	 */
 	public DiseaseType getDiseaseType(String code) throws OHServiceException {
