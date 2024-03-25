@@ -49,12 +49,16 @@ public interface MedicalInventoryIoOperationRepository extends JpaRepository<Med
 	List<MedicalInventory> findInventoryByParams(@Param("dateFrom") LocalDateTime dateFrom, @Param("dateTo") LocalDateTime dateTo, @Param("status") String status, @Param("type") String type);
 	
 	@Query(value = "select medinv from MedicalInventory medinv where medinv.inventoryDate >= :dateFrom and medinv.inventoryDate < :dateTo and medinv.inventoryType = :type")
-	List<MedicalInventory> findInventoryByParamswithoutStatus(@Param("dateFrom") LocalDateTime dateFrom, @Param("dateTo") LocalDateTime dateTo, @Param("type") String type);
+
+	List<MedicalInventory> findInventoryByParamsWithoutStatus(@Param("dateFrom") LocalDateTime dateFrom, @Param("dateTo") LocalDateTime dateTo, @Param("type") String type);
+
 	
 	@Query(value = "select medinv from MedicalInventory medinv where medinv.inventoryDate >= :dateFrom and medinv.inventoryDate < :dateTo and medinv.status = :status and medinv.inventoryType = :type")
 	Page<MedicalInventory> findInventoryByParamsPageable(@Param("dateFrom") LocalDateTime dateFrom, @Param("dateTo") LocalDateTime dateTo, @Param("status") String status, @Param("type") String type, Pageable pageable);
 	
 	@Query(value = "select medinv from MedicalInventory medinv where medinv.inventoryDate >= :dateFrom and medinv.inventoryDate < :dateTo and medinv.inventoryType = :type")
+
 	Page<MedicalInventory> findInventoryByParamsWithoutStatusPageable(@Param("dateFrom") LocalDateTime dateFrom, @Param("dateTo") LocalDateTime dateTo, @Param("type") String type, Pageable pageable);
+
 
 }

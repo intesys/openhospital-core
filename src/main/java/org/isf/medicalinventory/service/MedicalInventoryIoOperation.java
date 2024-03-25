@@ -134,7 +134,11 @@ public class MedicalInventoryIoOperation {
 	 */
 	public List<MedicalInventory> getMedicalInventoryByParams(LocalDateTime dateFrom, LocalDateTime dateTo, String status, String type) throws OHServiceException {
 		if (status == null) {
+<<<<<<< HEAD
 			return repository.findInventoryByParamswithoutStatus(dateFrom, dateTo, type);
+=======
+			return repository.findInventoryByParamsPageablewithoutSatus(dateFrom, dateTo, type);
+>>>>>>> develop
 		}
 		return repository.findInventoryByParams(dateFrom, dateTo, status, type);
 	}
@@ -154,7 +158,11 @@ public class MedicalInventoryIoOperation {
 	public Page<MedicalInventory> getMedicalInventoryByParamsPageable(LocalDateTime dateFrom, LocalDateTime dateTo, String status, String type, int page, int size) throws OHServiceException {
 		Pageable pageable = PageRequest.of(page, size);
 		if (status == null) {
+<<<<<<< HEAD
 			return repository.findInventoryByParamsWithoutStatusPageable(dateFrom, dateTo, type, pageable);
+=======
+			return repository.findInventoryByParamsPageablewithoutSatus(dateFrom, dateTo, type, pageable);
+>>>>>>> develop
 		}
 		return repository.findInventoryByParamsPageable(dateFrom, dateTo, status, type, pageable);
 	}
